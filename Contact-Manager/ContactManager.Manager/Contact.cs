@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ContactManager.ContactManager.Manager
@@ -78,6 +79,11 @@ namespace ContactManager.ContactManager.Manager
                 if (String.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Phone number cannot be empty");
+                }
+
+                if(!Regex.IsMatch(value, @"\d+"))
+                {
+                    throw new ArgumentException("Phone number can only contain integers");
                 }
 
                 phoneNumber = value.Trim();
